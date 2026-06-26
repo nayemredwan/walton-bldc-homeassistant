@@ -3,22 +3,16 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_NAME
 
-from .const import (
-    DOMAIN,
-    DEFAULT_NAME,
-    CONF_REMOTE,
-    CONF_DEVICE,
-)
+from .const import DOMAIN, DEFAULT_NAME, CONF_REMOTE, CONF_DEVICE
 
 
 class WaltonBLDCConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Walton BLDC config flow."""
+
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
         if user_input is not None:
-            await self.async_set_unique_id("walton_bldc")
-            self._abort_if_unique_id_configured()
-
             return self.async_create_entry(
                 title=user_input[CONF_NAME],
                 data=user_input,
