@@ -15,6 +15,8 @@ from .const import (
     CONF_REMOTE,
     DEFAULT_NAME,
     MAX_SPEED,
+    DOMAIN,
+    MANUFACTURER,
 )
 
 
@@ -52,6 +54,15 @@ class WaltonBLDCFan(FanEntity):
 
         self._attr_is_on = False
         self._speed = 1
+
+        self._attr_unique_id = "walton_bldc_fan"
+
+        self._attr_device_info = {
+            "identifiers": {(DOMAIN, "walton_bldc")},
+            "manufacturer": MANUFACTURER,
+            "model": "BLDC Ceiling Fan",
+            "name": self._attr_name,
+        }
 
     @property
     def is_on(self):
